@@ -1,0 +1,49 @@
+﻿@model twit.Models.Register
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+
+</head>
+<body>
+
+    <div class="login-card">
+        <p class="heading">Twit</p>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login-form" }))
+        {
+            @Html.TextBoxFor(model => model.Username, new { @class = "text-box", Type = "Text", placeholder = "Username(name)", required = "required" })
+            @Html.ValidationMessageFor(Model => Model.Username)
+
+            <br />
+            @Html.TextBoxFor(model => model.Email, new { @class = "text-box", Type = "email", placeholder = "Email", required = "required" })
+            @Html.ValidationMessageFor(Model => Model.Email)
+
+            <br />
+            @Html.TextBoxFor(model => model.Password, new { @class = "text-box", Type = "password", placeholder = "Password", required = "required" })
+            @Html.ValidationMessageFor(Model => Model.Password)
+
+            <br />
+            <button type="submit">Register</button>
+            <br />
+            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "register-link" })
+        }
+
+        @if (ViewBag.NotSucces != null)
+        {
+            <script>
+                alert('@ViewBag.NotSucces');
+            </script>
+        }
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@model twit.Models.Login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/login.css"  />
+
+</head>
+<body>
+
+    <div class="login-card">
+        <p class="heading">Twit</p>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login-form" }))
+        {
+            @Html.TextBoxFor(model => model.username, new { @class = "text-box",Type="email", placeholder = "Email", required = "required" })
+            <br />
+            @Html.TextBoxFor(model => model.Password, new { @class = "text-box",Type="password  ", placeholder = "Password", required = "required" })<br />
+            <button type="submit">Login</button>
+            <br />
+            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "register-link" })
+        }
+
+        @if (ViewBag.NotSucces != null)
+        {
+            <script>
+                alert('@ViewBag.NotSucces');
+            </script>
+        }
+
+    </div>
+
+</body>
+</html>
